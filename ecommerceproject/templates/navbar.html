@@ -1,0 +1,18 @@
+<nav>
+    <ul>
+        <li><a href="{% url 'shope:allProdCat' %}"> All Products</a></li>
+        {% for cat in links %}
+
+        <li><a href="{{category.get_url}}">{{cat.name}} </a> </li>
+        {% endfor %}
+        {% if user.is_authenticated %}
+									<li>Hello {{user.username}}</li>
+									<li><a href="credentials/logout">Logout</a></li>
+									{% else %}
+
+									<li><a href="credentials/register">Register</a></li>
+									<li><a href="credentials/login">Login</a></li>
+									{% endif %}
+        <li>Your Cart()</li>
+    </ul>
+</nav>

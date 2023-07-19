@@ -1,0 +1,68 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block metadescription %}
+    {% if category %}
+        {{ category.desc|truncatewords:155 }}
+    {% else %}
+        Welcome to RMS Store where you can buy all items in one stop.....
+    {% endif %}
+{% endblock %}
+{% block title %}
+    {% if category %}
+        {{ category.name}} - RMS Store
+    {% else %}
+        See our New Collections - RMS Store
+    {% endif %}
+{% endblock %}
+
+{% block content %}
+{% if category %}
+
+    <div>
+      <div>
+        <p><a href="{% url 'shope:allProdCat' %}">Our Product Collection </a></p>
+      </div>
+    </div>
+    {% endif %}
+<div>
+  {% if category %}
+      <img src="{{category.image.url}}" alt="{{category.name}}">
+</div>
+    <br>
+<div>
+      <h1>{{category.name}}</h1>
+      <p>{{category.desc}}</p>
+</div>
+    {% else %}
+<div>
+<img src="{% static 'img/banner.png' %}" alt="our products">
+</div>
+<br>
+<div>
+    <h1> Our Products Collections</h1>
+    <p>Lorem Ipsum is simply dummy text of the printing and
+        typesetting industry. Lorem Ipsum has been the industry's
+        standard dummy text ever since the 1500s, when an unknown
+        printer took a galley of type and scrambled it to make a type specimen book.
+        It has survived not only five centuries, but also the leap into electronic typesetting,
+        remaining essentially unchanged. It was popularised in
+        the 1960s with the release of Letraset sheets containing Lorem Ipsum passages, and more </p>
+</div>
+     {% endif %}
+<div>
+    <div>
+        {% for product in products %}
+        <div>
+            <div>
+                <a href=""><img src="{{product.image.url}}" alt="{{product.name}}"</a>
+            <div>
+                <h4> {{product.name}}</h4>
+                <p>{{product.price}}</p>
+            </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</div>
+
+{% endblock %}
